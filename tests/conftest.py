@@ -14,7 +14,7 @@ def creds():
     }
 
 @pytest.fixture
-def booking_payload():
+def new_booking():
     return {
         "firstname": "Michael",
         "lastname": "Ball",
@@ -28,7 +28,7 @@ def booking_payload():
     }
 
 @pytest.fixture
-def updated_payload():
+def updated_booking():
     return {
         "firstname": "Michael",
         "lastname": "Ball",

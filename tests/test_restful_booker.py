@@ -15,20 +15,21 @@ def test_valid_creds(baseURL, creds):
     assert 'token' in response.text
     
 # create booking
-def test_post_booking(baseURL, booking_payload):
+def test_post_booking(baseURL, new_booking):
     global bookingId
-    response = requests.post(baseURL + 'booking', json=booking_payload)
+    response = requests.post(baseURL + 'booking', json=new_booking)
     assert 'bookingid' in response.text
     assert response.status_code == 200
     bookingId = response.json()['bookingid']
 
 # update booking
-def test_update_booking(baseURL, updated_payload):
+def test_put_booking(baseURL, updated_booking):
     global bookingId
     headers = {'Content-Type': 'application/json', 'Authorization' : 'Basic YWRtaW46cGFzc3dvcmQxMjM='}
-    response = requests.put(baseURL + 'booking/' + f'{bookingId}' , json=updated_payload, headers=headers)
+    response = requests.put(baseURL + 'booking/' + f'{bookingId}' , json=updated_booking, headers=headers)
     assert response.status_code == 200
 
+# get updated booking
 def test_get_booking(baseURL):
     global bookingId
     response = requests.get(baseURL + 'booking/' + f'{bookingId}')
